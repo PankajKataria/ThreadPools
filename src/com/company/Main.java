@@ -15,5 +15,6 @@ public class Main {
             int randSleep = rand.nextInt(10);
             Thread.sleep(randSleep*100);
         }
+	    mypool.shutdown();
     }
 }
