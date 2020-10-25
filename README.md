@@ -4,7 +4,7 @@ The idea is the learn multithreading/Parallelism by implementing important concu
 ## Contents
 - Threadpools
   - [X] Fixed Thread Pools [java](src/com/company/pools/FixedThreadPool.java)
-  - [ ] Scheduled Thread Pools 
+  - [X] Scheduled Thread Pools 
 - Semaphore
   - [ ] Mutex
   - [ ] N Producer M consumers
