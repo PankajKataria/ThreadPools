@@ -3,7 +3,6 @@ package com.company.tasks;
 import java.time.Instant;
 
 public class scheduledTask extends ITask {
-
     long scheduledTime;
     public scheduledTask(int id, int timeout, int unit) {
         this.id = id;

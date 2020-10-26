@@ -6,6 +6,7 @@ import com.company.executors.IExecutor;
 
 import java.util.ArrayList;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ScheduledThreadPool extends IExecutor {
@@ -40,11 +41,11 @@ public class ScheduledThreadPool extends IExecutor {
     }
 
     @Override
-    public void submit(ITask newTask) {
-        taskQueue.add(new ITaskNode(newTask, 0l));
-    }
+    public void submit(ITask newTask) {taskQueue.add(new ITaskNode(newTask, 0l));}
 
-    public void schedule(ITask task, long delay, int timeunit) {}
+    public void schedule(ITask task, long delay, TimeUnit unit) {
+        taskQueue.add(new ITaskNode(task, unit.toNanos(delay)));
+    }
 
     @Override
     public void shutdownNow() {}
