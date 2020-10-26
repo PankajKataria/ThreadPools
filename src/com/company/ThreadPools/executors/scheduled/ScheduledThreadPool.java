@@ -1,8 +1,8 @@
-package com.company.executors.scheduled;
+package com.company.ThreadPools.executors.scheduled;
 
-import com.company.tasks.ITask;
-import com.company.Worker;
-import com.company.executors.IExecutor;
+import com.company.ThreadPools.tasks.ITask;
+import com.company.ThreadPools.Worker;
+import com.company.ThreadPools.executors.IExecutor;
 
 import java.util.ArrayList;
 import java.util.concurrent.PriorityBlockingQueue;
@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ScheduledThreadPool extends IExecutor {
-
     public class ITaskNode implements Comparable<ITaskNode> {
         ITask task;
         long timer;
@@ -43,26 +42,22 @@ public class ScheduledThreadPool extends IExecutor {
     @Override
     public void submit(ITask newTask) {taskQueue.add(new ITaskNode(newTask, 0l));}
 
-    public void schedule(ITask task, long delay, TimeUnit unit) {
-        taskQueue.add(new ITaskNode(task, unit.toNanos(delay)));
+    public void schedule(ITask task, long delay, TimeUnit unit) throws InterruptedException {
+        taskQueue.put(new ITaskNode(task, unit.toNanos(delay)));
     }
 
     @Override
-    public void shutdownNow() {}
+    public void shutdownNow() {
+        this.dead.set(true);
+        for (Worker wt: workers) wt.interrupt();
+    }
 
     @Override
     public boolean isDead() {return this.dead.get();}
 
     @Override
-    public ITask getTask() {
-        ITask returnTask = null;
-        try {
-            ITaskNode retTask = (ITaskNode) this.taskQueue.take();
-            returnTask = retTask.task;
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return returnTask;
+    public ITask getTask() throws InterruptedException {
+        ITaskNode retTask = (ITaskNode) this.taskQueue.take();
+        return retTask.task;
     }
 }

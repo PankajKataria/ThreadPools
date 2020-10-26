@@ -1,7 +1,7 @@
-package com.company;
+package com.company.ThreadPools;
 
-import com.company.executors.IExecutor;
-import com.company.tasks.SimpleTask;
+import com.company.ThreadPools.executors.IExecutor;
+import com.company.ThreadPools.tasks.SimpleTask;
 
 public class Worker implements Runnable {
     IExecutor executor;

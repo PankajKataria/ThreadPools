@@ -1,4 +1,4 @@
-package com.company.tasks;
+package com.company.ThreadPools.tasks;
 
 public class SimpleTask extends ITask {
 

@@ -3,13 +3,13 @@ The idea is to learn multithreading/Parallelism by implementing important concur
 
 ## Contents
 - Threadpools
-  - [X] Fixed Thread Pools [java](src/com/company/executors/fixed/FixedThreadPool.java)
-  - [X] Scheduled Thread Pools [java](src/com/company/executors/scheduled/ScheduledThreadPool.java)
+    - [X] Fixed Thread Pools [java](src/com/company/ThreadPools/executors/fixed/FixedThreadPool.java)
+    - [X] Scheduled Thread Pools [java](src/com/company/ThreadPools/executors/scheduled/ScheduledThreadPool.java)
 - Semaphore
-  - [ ] Mutex
-  - [ ] N Producer M consumers
+    - [ ] Mutex
+    - [ ] N Producer M consumers
 - Latches/Locks
-  - [ ] Reentrant Locks
+    - [ ] Reentrant Locks
 - Data Structure
-    - [ ] Atomic Integer
     - [ ] Blocking linked list
+    - [ ] Atomic Integer

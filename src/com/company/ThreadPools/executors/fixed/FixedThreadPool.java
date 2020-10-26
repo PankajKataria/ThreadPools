@@ -1,8 +1,8 @@
-package com.company.executors.fixed;
+package com.company.ThreadPools.executors.fixed;
 
-import com.company.tasks.ITask;
-import com.company.Worker;
-import com.company.executors.IExecutor;
+import com.company.ThreadPools.tasks.ITask;
+import com.company.ThreadPools.Worker;
+import com.company.ThreadPools.executors.IExecutor;
 
 import java.util.ArrayList;
 
@@ -24,19 +24,13 @@ public class FixedThreadPool extends IExecutor {
 
     public boolean isDead() {return this.dead.get();}
 
-    public void submit (ITask newTask) {
+    public void submit (ITask newTask) throws InterruptedException {
         System.out.println("Received " + newTask);
-        taskQueue.add(newTask);
+        taskQueue.put(newTask);
     }
 
-    public ITask getTask() {
-        ITask ctask = null;
-        try {
-            ctask = (ITask) taskQueue.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return ctask;
+    public ITask getTask() throws InterruptedException {
+        return (ITask) taskQueue.take();
     }
 
     public void shutdownNow() {

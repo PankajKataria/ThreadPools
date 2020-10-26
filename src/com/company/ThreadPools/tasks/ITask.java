@@ -1,6 +1,4 @@
-package com.company.tasks;
-
-import java.util.concurrent.BlockingQueue;
+package com.company.ThreadPools.tasks;
 
 public abstract class ITask implements Comparable<ITask> {
     public int id;
